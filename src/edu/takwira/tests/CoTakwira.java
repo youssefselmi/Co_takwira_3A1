@@ -96,7 +96,7 @@ Joueur j2=new Joueur(9,"sami","bhh",hello,15,"dd","aaaa",7) ;
       //  System.out.println(jc.afficheragejoueur()); */
       List<Equipe> Listequipe;
      
-      jc.ajouterJoueur(j2);
+//      jc.ajouterJoueur(j2);
       int n=0;
 Listequipe=ecd.afficherEquipe();
 for(Equipe i : Listequipe)
