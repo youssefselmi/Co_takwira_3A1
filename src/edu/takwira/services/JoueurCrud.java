@@ -28,10 +28,14 @@ public class JoueurCrud implements IJoueur<Joueur> {
 
  
     @Override
-    public List afficherJoueur() {
-              List<Joueur> joueurList = new ArrayList<>();
+    public List<Joueur> afficherJoueur(Equipe e) {
+             
+              
+          List<Joueur> joueurList=new ArrayList<>();   
         try {
-            String requete = "SELECT joueur.*,EXTRACT(YEAR FROM SYSDATE())- EXTRACT(YEAR FROM date_naissance),equipe.nom_equipe FROM joueur INNER JOIN equipe ON (joueur.id_equipe=equipe.id_e) GROUP BY equipe.nom_equipe";
+            System.out.print("Le nom de l'equipe est"+"    "+e.getNom_equipe()+"\n");
+            
+            String requete = "SELECT * FROM joueur where id_equipe="+e.getId_equipe()+"";
             Statement st = Connection.getInstance().getCnx()
                     .createStatement();
             ResultSet rs =  st.executeQuery(requete);
@@ -46,8 +50,8 @@ public class JoueurCrud implements IJoueur<Joueur> {
 
             j.setVille(rs.getString(7));
             j.setId_equipe(rs.getInt(8));
-            j.setAge_joueur(rs.getFloat(9));
-            j.setNom_equipe(rs.getString(10));
+           
+         
                 joueurList.add(j);
             }
         } catch (SQLException ex) {
@@ -58,7 +62,23 @@ public class JoueurCrud implements IJoueur<Joueur> {
 
     @Override
     public void ajouterJoueur(Joueur t) {
+        
+           
+        
+        
  try {
+     int n=0;
+         String requete2="SELECT * from joueur where id_equipe = "+t.getId_equipe()+"";
+Statement st2 = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs2 =  st2.executeQuery(requete2);
+     while(rs2.next())
+     {
+      n++;   
+     }
+     
+     if( n < 11)
+     {
             String requete= "INSERT INTO joueur( nom_joueur,prenom_joueur,date_naissance,numero,adresse_mail,ville,id_equipe)"
                     + "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst = Connection.getInstance().getCnx()
@@ -73,6 +93,12 @@ public class JoueurCrud implements IJoueur<Joueur> {
             
             pst.executeUpdate();
             System.out.println("Joueur inserée");
+     }
+            else 
+            {
+                    
+               System.out.println("Le nombre maximale a été atteint !!");
+                    }
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

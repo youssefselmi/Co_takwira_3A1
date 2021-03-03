@@ -14,16 +14,16 @@ import java.sql.Date;
  * @author pc_dell
  */
 public class Joueur {
-    int id_joueur;
-    String nom_joueur	;
-    String prenom_joueur;
-    float age;
-    Date date_naissance;	
-     int numero;	
-     String adresse_mail;
-     String ville;	
-     int id_equipe;
-     String nom_equipe;
+    private int id_joueur;
+    private String nom_joueur	;
+    private String prenom_joueur;
+    private float age;
+    private Date date_naissance;	
+     private int numero;	
+     private String adresse_mail;
+     private String ville;	
+     private int id_equipe;
+     //private String nom_equipe;
 
     public Joueur() {
     }
@@ -59,7 +59,7 @@ public class Joueur {
     public Date getDate_naissance() {
         return date_naissance;
     }
-
+/*
     public String getNom_equipe() {
         return nom_equipe;
     }
@@ -67,7 +67,7 @@ public class Joueur {
     public void setNom_equipe(String nom_equipe) {
         this.nom_equipe = nom_equipe;
     }
-
+*/
    
 
     public int getNumero() {
@@ -127,7 +127,12 @@ public class Joueur {
 
     @Override
     public String toString() {
-        return "Joueur{" + "id_joueur=" + id_joueur + ", nom_joueur=" + nom_joueur + ", prenom_joueur=" + prenom_joueur +  ",age=" +age + ",Date de Naissance=" + date_naissance+ ", numero=" + numero + ", adresse_mail=" + adresse_mail + ", ville=" + ville + ", id_equipe=" + id_equipe + ", nom_equipe=" + nom_equipe + '}';
+        return "Joueur{" + "id_joueur=" + id_joueur + ", nom_joueur=" + nom_joueur + ", prenom_joueur=" + prenom_joueur +  ",age=" +age + ",Date de Naissance=" + date_naissance+ ", numero=" + numero + ", adresse_mail=" + adresse_mail + ", ville=" + ville + ", id_equipe=" + id_equipe + '}';
+    }
+    public void afficher ()
+    {
+     System.out.println("Le nom de joueur "+this.nom_joueur+" le prenom du joueur "+this.prenom_joueur);
+        
     }
      
 

@@ -12,10 +12,10 @@ import java.util.Objects;
  * @author pc_dell
  */
 public class Equipe  {
-    int id_equipe;
-    String nom_equipe;
+    private int id_equipe;
+    private String nom_equipe;
    // int nb_joueurs;
-    int id_coach;
+    private int id_coach;
 
     public Equipe() {
     }

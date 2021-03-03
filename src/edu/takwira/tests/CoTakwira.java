@@ -30,8 +30,8 @@ public class CoTakwira {
         Connection mc = Connection.getInstance();
         Connection mc2 = Connection.getInstance();
         System.out.println(mc.hashCode()+"--"+mc2.hashCode());
-        Equipe e = new Equipe(7,"realMadrid", 3);
-          Equipe e1 = new Equipe(7,"realMadrid", 20);
+        Equipe e = new Equipe(7,"realMadrid", 8);
+          //Equipe e1 = new Equipe(8,"realMadrid", 20);
        EquipeCrud ecd = new EquipeCrud();
        JoueurCrud jc=new JoueurCrud();
    // Date aujourdhui = new Date();
@@ -40,7 +40,7 @@ public class CoTakwira {
     Date hello=Date.valueOf(datejoueur);
     
 Joueur j1=new Joueur(8,"yasmine","haffar",hello,14,"bb","cc",4) ; 
-Joueur j2=new Joueur(9,"sami","bhh",hello,15,"dd","aaaa",8) ;  
+Joueur j2=new Joueur(9,"sami","bhh",hello,15,"dd","aaaa",7) ;  
 
      /* Joueur j1=new Joueur(3,"yassine","dabboussi",29,13,"yassinedaboussi","Tunis",2);
       Joueur j2=new Joueur(4,"maher","guerfali",28,13,"maherguerfli@gmail.com","Tunis",8);
@@ -68,9 +68,9 @@ Joueur j2=new Joueur(9,"sami","bhh",hello,15,"dd","aaaa",8) ;
 
       //  System.out.println(ecd.afficherEquipe());
      List<Joueur> yasmine=new ArrayList<>();
-  yasmine=jc.afficherJoueur();
      
-        System.out.println(yasmine);
+     // yasmine=jc.afficherJoueur();
+/*        System.out.println(yasmine);
        float average = (float) yasmine.stream()
                 
                 .mapToDouble(c->c.getAge_joueur()).average().getAsDouble();
@@ -93,8 +93,15 @@ Joueur j2=new Joueur(9,"sami","bhh",hello,15,"dd","aaaa",8) ;
 
                          System.out.println(x+"%");
                          System.out.println(x1+"%");
-      //  System.out.println(jc.afficheragejoueur());             
-      // System.out.println(jc.afficherJoueur());
+      //  System.out.println(jc.afficheragejoueur()); */
+      List<Equipe> Listequipe;
+     
+      jc.ajouterJoueur(j2);
+      int n=0;
+Listequipe=ecd.afficherEquipe();
+for(Equipe i : Listequipe)
+   jc.afficherJoueur(i).get(n).afficher();
+n++;
                          
     }
     

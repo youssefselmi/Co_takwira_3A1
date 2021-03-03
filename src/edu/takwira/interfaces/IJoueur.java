@@ -5,6 +5,7 @@
  */
 package edu.takwira.interfaces;
 
+import edu.takwira.entities.Equipe;
 import java.util.List;
 import java.util.Map;
 //import static javafx.scene.input.KeyCode.T;
@@ -17,7 +18,7 @@ public interface IJoueur<T> {
       public void ajouterJoueur(T t);
      public void supprimerJoueur(T t);
      public void updateJoueur(T t);
-     public List<T> afficherJoueur(); 
+     public List<T> afficherJoueur(Equipe e); 
     // public Map<T> afficherEquipeJoueur();
     
 }
