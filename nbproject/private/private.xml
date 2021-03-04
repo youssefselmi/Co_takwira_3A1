@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/services/CoachCrud.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/entities/Coach.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/interfaces/ICoach.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/esu/takwira/tests/Co_takwira.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/interfaces/IEntrainement.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/services/EntrainementCrud.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/esu/takwira/tools/Connection.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/co_takwira/src/edu/takwira/entities/Entrainement.java</file>
+        </group>
+    </open-files>
+</project-private>
