@@ -1,0 +1,212 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import entities.Article;
+import interfaces.IArticleService;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Vector;
+import javafx.util.Pair;
+import tools.MyConnection;
+
+/**
+ *
+ * @author khali
+ */
+public class ArticleService implements IArticleService<Article> {
+    @Override
+    public void ajouterArticle(Article a) {
+         try {
+            String requete= "INSERT INTO article (type,titre,description,date,id_personnel)"
+                    + "VALUES (?,?,?,?,?)";
+            PreparedStatement pst = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            pst.setString(1, a.getType());
+            pst.setString(2, a.getTitre());
+            pst.setString(3, a.getDescription());
+            pst.setDate(4, (Date) a.getDate());
+            pst.setInt(5,a.getId_personnel());
+            pst.executeUpdate();
+            System.out.println("Article inserée");
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+    
+    @Override
+    public void supprimerArticle(Article a) {
+        try {
+            String requete = "DELETE FROM article where id=?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            pst.setInt(1, a.getId());
+            pst.executeUpdate();
+            System.out.println("article supprimée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
+    @Override
+    public void updateArticle(Article a) {
+        try {
+            String requete = "UPDATE article SET type=?,titre=?,description=?,date=?,id_personnel=?  WHERE id=?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            pst.setString(1, a.getType());
+            pst.setString(2, a.getTitre());
+            pst.setString(3, a.getDescription());
+            pst.setDate(4, (Date) a.getDate());
+            pst.setInt(5,a.getId_personnel());
+            pst.setInt(6,a.getId());
+            
+            pst.executeUpdate();
+            System.out.println("Article modifiée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public List<Article> displayArticles() {
+         List<Article> articlesList = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM article";
+            Statement st = MyConnection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Article a = new Article();
+                a.setId(rs.getInt("id"));
+                a.setType(rs.getString("type"));
+                a.setTitre(rs.getString("titre"));
+                a.setDescription(rs.getString("description"));
+                a.setDate(rs.getDate("date"));
+                a.setId_personnel(rs.getInt("id_personnel"));
+                articlesList.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return articlesList;
+    }
+    
+    @Override
+    public List<Article>chercher_article(String titre) {
+        String requete="select * from article where titre=?";
+        ResultSet rs=null;
+        List<Article> list=new ArrayList();
+        try{
+            PreparedStatement ps = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            ps.setString(1, titre);
+            rs=ps.executeQuery();
+        }catch(SQLException ex){
+            System.err.println(ex.getMessage());
+        }
+        Article a=new Article();
+        try{
+            while(rs.next()){
+               a.setId(rs.getInt("id"));
+                a.setType(rs.getString("type"));
+                a.setTitre(rs.getString("titre"));
+                a.setDescription(rs.getString("description"));
+                a.setDate(rs.getDate("date"));
+                a.setId_personnel(rs.getInt("id_personnel"));
+                list.add(new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6)));
+            }
+        }catch(SQLException exc){
+             System.err.println(exc.getMessage());
+        }
+        return list;
+    }
+    
+    public List<Article>trier_article() {
+                 List<Article> list=new ArrayList<>();
+        try{
+            String requete="select * from article order by date asc";
+            PreparedStatement ps = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                list.add(new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6)));
+            }
+        }
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+        }
+        return list;
+    }
+    
+    @Override
+    public List<Pair<Integer, Article>>article_plus_commentes() {
+                 List<Pair<Integer,Article>> list = new ArrayList<Pair<Integer,Article>>();
+        try{
+            String requete="select * from article";
+            PreparedStatement ps = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Pair<Integer, Article> pair = new Pair<>(0, new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6)));
+                list.add(pair);
+            }
+            
+        }
+  
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+        }
+        
+        
+        try{
+            for(int i=0;i<list.size();i++)
+            {
+                Pair<Integer, Article> pair = list.get(i);
+                Article a = pair.getValue();
+            String requete="select count(*) from commentaire where id_article=? ";
+            PreparedStatement ps = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            ps.setInt(1,a.getId());
+            ResultSet rs=ps.executeQuery();
+            int nbc = 0;
+            while(rs.next()){
+                nbc=rs.getInt(1);
+            }
+            Pair<Integer, Article> pair2 = new Pair<>(nbc,a);
+            list.set(i, pair2);
+            }
+            Collections.sort(list, new Comparator<Pair<Integer, Article>>() {
+    @Override
+    public int compare(final Pair<Integer, Article> o1, final Pair<Integer, Article> o2) {
+        return o2.getKey()-o1.getKey();
+    }
+});
+            
+            
+        }
+  
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+        }
+        return list;
+    }
+    
+    
+    
+ 
+    
+}
