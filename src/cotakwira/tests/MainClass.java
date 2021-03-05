@@ -29,9 +29,12 @@ public class MainClass {
         //Date DateNonTraiter= null;
         
         CrudReclamation go = new CrudReclamation();
-        Reclamation rec = new Reclamation(1,2,"Coach","DescriptionRec",21);        
-        go.ajouterReclamation(rec);
-
+        Reclamation rec = new Reclamation(3,2,"Coach","DescriptionRec",21);        
+        //go.ajouterReclamation(rec);
+        //go.supprimerReclamation(rec);
+        //Reclamation rec2 = new Reclamation(3,"Coach","good!!",21);
+        //go.updateReclamation(rec2);
+        System.out.println(go.displayReclamation());
          
          
     }
