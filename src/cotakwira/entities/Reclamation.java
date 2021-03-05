@@ -30,6 +30,13 @@ public class Reclamation {
         //this.DateTraitement = DateTraitement;
         this.idCoach = idCoach;
     }
+    public Reclamation(int idRec,int idJoueur,String SujetRec,String DescriptionRec)//update
+    {
+     this.idRec = idRec; 
+     this.idJoueur = idJoueur;
+     this.SujetRec = SujetRec;
+     this.DescriptionRec = DescriptionRec;
+    }
     public Reclamation(int idRec,String SujetRec,String DescriptionRec)//update
     {
      this.idRec = idRec; 

@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -157,6 +159,33 @@ public class CrudReclamation implements IReclamation<Reclamation> {
             System.out.println(ex.getMessage());
         }
         return ReclamationList;
+    }
+
+    @Override
+    public void PrioriteRec() {
+        try {
+            String requetes = "UPDATE reclamation SET SujetRec=? WHERE StatusRec ='non traite' AND PrioriteRec='Medium' ";
+                       PreparedStatement post = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requetes);
+            Statement post2 = MyConnection.getInstance().getCnx().createStatement();
+            
+            ResultSet rsu = post2.executeQuery(requetes);
+            int count = 0;
+            while (rsu.next()) {
+             count++;
+                System.out.println(count);
+                if(count>4)
+                {
+                 post.setString(5,rsu.getString("hight"));                
+               }
+                
+            }
+            post.executeUpdate();
+        } catch (SQLException ex) {
+        System.out.println(ex.getMessage());    
+        }
+        
+        
     }
 
 }

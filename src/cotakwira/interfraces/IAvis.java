@@ -5,24 +5,20 @@
  */
 package cotakwira.interfraces;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
  *
  * @author yassin
- * @param <T>
  */
-    public interface IReclamation <T>{
+public interface IAvis <T>{
     
-    public void ajouterReclamation(T t);
+    public void ajouterAvis(T t);
 
-    public void supprimerReclamation(T t);
+    public void supprimerAvis(T t);
 
-    public void updateReclamation(T t);
+    public void updateAvis(T t);
 
-    public List<T> displayReclamation();
-    
-    public void PrioriteRec();
+    public List<T> displayAvis();
     
 }
