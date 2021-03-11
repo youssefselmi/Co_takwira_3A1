@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="takwira.pidev.gui2.SupprimStadeController">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="193.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Pane prefHeight="142.0" prefWidth="193.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="XING" layoutX="44.0" layoutY="75.0" size="30" />
+                  <Label layoutX="79.0" layoutY="51.0" text="Takwira" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="btnOrganiser" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnOrganiserClicked" onMouseExited="#OnBtnOrganiserMouseE" onMouseMoved="#OnBtnOrganiserMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Organiser" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="20" strokeLineCap="ROUND" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnConsulter" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnConsulterClicked" onMouseExited="#OnBtnConsulterMouseE" onMouseMoved="#OnBtnConsulterMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Consulter" textFill="#fcfcfc">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EYE" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnModifier" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnModifierClicked" onMouseExited="#OnBtnModifierMouseE" onMouseMoved="#OnBtnModifierMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSupprimer" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnSupprimerClicked" onMouseExited="#OnBtnSupprimerMouseE" onMouseMoved="#OnBtnSupprimerMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Supprimer" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <JFXButton fx:id="BtnModiffier" layoutX="1004.0" layoutY="726.0" onAction="#modifierStade" style="-fx-background-color: #0598ff;" text="confirmer la supression" textFill="WHITE" />
+      <Pane layoutX="193.0" layoutY="87.0" prefHeight="78.0" prefWidth="1006.0" style="-fx-background-color: #05a1f3;">
+         <children>
+            <Label fx:id="stateLabel" layoutX="25.0" layoutY="15.0" prefHeight="48.0" prefWidth="225.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="230.0" layoutY="293.0" prefHeight="214.0" prefWidth="904.0">
+         <children>
+            <Label layoutX="24.0" layoutY="138.0" prefHeight="21.0" prefWidth="112.0" text="Capacite">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="538.0" layoutY="57.0" text="VILLE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="57.0" prefHeight="21.0" prefWidth="90.0" text="NOM Stade">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="LabelE1" layoutX="166.0" layoutY="88.0" prefHeight="21.0" prefWidth="225.0" />
+            <Label fx:id="LabelE2" layoutX="647.0" layoutY="83.0" prefHeight="21.0" prefWidth="217.0" textFill="RED" />
+            <Label fx:id="LabelS" layoutX="166.0" layoutY="181.0" prefHeight="21.0" prefWidth="217.0" textFill="RED" />
+            <Label layoutX="530.0" layoutY="138.0" text="Adresse">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="tf_adresse" editable="false" layoutX="645.0" layoutY="129.0" opacity="0.68" prefHeight="31.0" prefWidth="225.0" promptText="Adresse" unFocusColor="#0598ff" />
+            <Label fx:id="LabelSpect" layoutX="647.0" layoutY="171.0" prefHeight="21.0" prefWidth="225.0" textFill="RED" />
+            <JFXTextField fx:id="tf_capacite" editable="false" layoutX="181.0" layoutY="133.0" opacity="0.68" prefHeight="31.0" prefWidth="225.0" promptText="Capacite" unFocusColor="#0598ff" />
+            <JFXTextField fx:id="tf_ville" editable="false" layoutX="645.0" layoutY="52.0" opacity="0.68" prefHeight="31.0" prefWidth="225.0" promptText="Ville" unFocusColor="#0598ff" />
+            <JFXTextField fx:id="tf_nomS" editable="false" layoutX="181.0" layoutY="42.0" opacity="0.68" prefHeight="31.0" prefWidth="225.0" promptText="Nom Stade" unFocusColor="#0598ff" />
+         </children>
+      </Pane>
+      <JFXComboBox fx:id="combo_id" layoutX="402.0" layoutY="233.0" opacity="0.68" prefHeight="31.0" prefWidth="237.0" promptText="ID Stade" unFocusColor="#0598ff" />
+      <Label layoutX="247.0" layoutY="238.0" prefHeight="21.0" prefWidth="90.0" text="ID Stade">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="refresh" layoutX="740.0" layoutY="231.0" text=" ">
+         <graphic>
+            <FontAwesomeIconView fx:id="actualiser" fill="#0598ff" glyphName="REFRESH" size="25" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

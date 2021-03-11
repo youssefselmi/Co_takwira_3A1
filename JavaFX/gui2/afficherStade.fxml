@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="takwira.pidev.gui2.AfficherStadeController">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="193.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Pane prefHeight="142.0" prefWidth="193.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="XING" layoutX="44.0" layoutY="75.0" size="30" />
+                  <Label layoutX="79.0" layoutY="51.0" text="Takwira" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="btnOrganiser" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnOrganiserClicked" onMouseExited="#OnBtnOrganiserMouseE" onMouseMoved="#OnBtnOrganiserMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Organiser" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="20" strokeLineCap="ROUND" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnConsulter" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnConsulterClicked" onMouseExited="#OnBtnConsulterMouseE" onMouseMoved="#OnBtnConsulterMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Consulter" textFill="#fcfcfc">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EYE" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnModifier" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnModifierClicked" onMouseExited="#OnBtnModifierMouseE" onMouseMoved="#OnBtnModifierMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSupprimer" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#OnBtnSupprimerClicked" onMouseExited="#OnBtnSupprimerMouseE" onMouseMoved="#OnBtnSupprimerMouse" prefHeight="62.0" prefWidth="193.0" style="-fx-background-color: #0598ff;" text="Supprimer" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="193.0" layoutY="90.0" prefHeight="78.0" prefWidth="1006.0" style="-fx-background-color: #05a1f3;">
+         <children>
+            <Label fx:id="stateLabel" layoutX="14.0" layoutY="15.0" prefHeight="48.0" prefWidth="225.0" />
+         </children>
+      </Pane>
+      <TableView fx:id="StadeTable" layoutX="250.0" layoutY="278.0" prefHeight="473.0" prefWidth="863.0" stylesheets="@../../../Css/newCascadeStyleSheet.css">
+        <columns>
+          <TableColumn fx:id="id_stade" prefWidth="141.0" text="ID Stade" />
+          <TableColumn fx:id="nom_stade" prefWidth="179.0" text="NOM Stade" />
+            <TableColumn fx:id="adresse" prefWidth="152.0" text="Adresse" />
+            <TableColumn fx:id="ville" prefWidth="195.0" text="Ville" />
+            <TableColumn fx:id="capacite" prefWidth="195.0" text="Capacite" />
+        </columns>
+      </TableView>
+      <Label layoutX="768.0" layoutY="207.0" text="Recherche">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="search" layoutX="905.0" layoutY="206.0" prefHeight="31.0" prefWidth="205.0" unFocusColor="#0598ff" />
+   </children>
+</AnchorPane>
