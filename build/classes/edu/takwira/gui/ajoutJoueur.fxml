@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="770.0" prefWidth="886.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.takwira.gui.AjoutJoueurController">
+    <stylesheets>
+        <URL value="@ajoutjoueur.css" />
+    </stylesheets>
+   <children>
+      <Pane fx:id="titreEquipe" layoutX="310.0" layoutY="20.0" prefHeight="46.0" prefWidth="241.0" styleClass="CardReclamation" stylesheets="@Reclamation.css">
+         <children>
+            <Text fill="WHITE" layoutX="75.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" wrappingWidth="113.28759765625">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="750.0" prefWidth="167.0" styleClass="sidebar" stylesheets="@Reclamation.css">
+         <children>
+            <Label layoutX="57.0" layoutY="89.0" prefHeight="32.0" prefWidth="107.0" text="Joueur" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Regular" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="id_joueur" layoutX="254.0" layoutY="154.0" promptText="Id joueur" />
+      <JFXTextField fx:id="prenom_joueur" layoutX="273.0" layoutY="239.0" promptText="Prenom_joueur" />
+      <JFXTextField fx:id="ville" layoutX="557.0" layoutY="320.0" promptText="Ville" />
+      <JFXTextField fx:id="nom_joueur" layoutX="504.0" layoutY="151.0" promptText="nom_joueur" />
+      <JFXTextField fx:id="numreo" layoutX="498.0" layoutY="239.0" promptText="numreo" />
+      <JFXTextField fx:id="adresse_mail" layoutX="286.0" layoutY="331.0" promptText="Mail" />
+      <JFXComboBox fx:id="position" layoutX="313.0" layoutY="484.0" promptText="Positiob" />
+      <JFXComboBox fx:id="id_equipe" layoutX="451.0" layoutY="431.0" promptText="id_equipe" />
+      <JFXDatePicker fx:id="date_naissance" layoutX="607.0" layoutY="405.0" onAction="#CalculerAge" promptText="Date de naissance" />
+      <JFXButton fx:id="btnAjouter" layoutX="346.0" layoutY="587.0" onAction="#ajouterjoueur" prefHeight="46.0" prefWidth="193.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Ajouter" textFill="WHITE" />
+      <JFXTextField fx:id="age" layoutX="609.0" layoutY="494.0" onAction="#CalculerAge" promptText="Age" />
+      <JFXButton fx:id="btnAjouter1" layoutX="599.0" layoutY="591.0" onAction="#golistejoueurs" prefHeight="42.0" prefWidth="181.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Liste joueurs" textFill="WHITE" />
+   </children>
+</AnchorPane>

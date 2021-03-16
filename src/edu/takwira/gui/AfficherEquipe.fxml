@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="760.0" prefWidth="825.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.takwira.gui.AfficherEquipeController">
+    <stylesheets>
+        <URL value="@afficherequipe.css" />
+    </stylesheets>
+   <children>
+      <Pane fx:id="titreEquipe" layoutX="300.0" layoutY="10.0" prefHeight="46.0" prefWidth="241.0" styleClass="CardReclamation" stylesheets="@Reclamation.css">
+         <children>
+            <Text fill="WHITE" layoutX="75.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipe" wrappingWidth="113.28759765625">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text fill="WHITE" layoutX="85.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipe" wrappingWidth="113.28759765625">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TableView fx:id="TableView" layoutX="201.0" layoutY="162.0" onMouseClicked="#setOnMouseClicked" prefHeight="212.0" prefWidth="539.0" stylesheets="@Reclamation.css">
+         <columns>
+            <TableColumn fx:id="id_e" prefWidth="70.99998474121094" text="id_e" />
+            <TableColumn fx:id="nom_equipe" prefWidth="119.0" text="Nom Equipe" />
+            <TableColumn fx:id="nom_coach" prefWidth="156.00003051757812" text="Nom Coach" />
+            <TableColumn fx:id="col_StatusRec" minWidth="8.0" prefWidth="132.99996948242188" text="Prenom Coach" />
+            <TableColumn fx:id="col_NomPrenomCoach" minWidth="0.0" prefWidth="0.0" />
+         </columns>
+      </TableView>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="750.0" prefWidth="167.0" styleClass="sidebar" stylesheets="@Reclamation.css">
+         <children>
+            <Label layoutX="57.0" layoutY="89.0" prefHeight="32.0" prefWidth="107.0" text="Reclamation" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Regular" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="nvide" layoutX="224.0" layoutY="497.0" promptText="Nom Equipe" text="id Equipe" />
+      <JFXComboBox fx:id="nvidc" layoutX="543.0" layoutY="488.0" onAction="#remplirnomcoach" prefHeight="31.0" prefWidth="168.0" promptText="Choisir Nom Coach" />
+      <JFXTextField fx:id="nvnome" layoutX="377.0" layoutY="495.0" promptText="Nom Equipe" />
+      <JFXButton fx:id="btnAjouter" layoutX="336.0" layoutY="577.0" onAction="#updateequipe" prefHeight="46.0" prefWidth="193.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Modifier" textFill="WHITE" />
+      <JFXButton fx:id="supprimer" layoutX="382.0" layoutY="385.0" onAction="#supprimerequipe" prefHeight="46.0" prefWidth="193.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Supprimer" textFill="WHITE" />
+   </children>
+</AnchorPane>
