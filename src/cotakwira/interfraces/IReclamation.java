@@ -13,16 +13,18 @@ import java.util.List;
  * @author yassin
  * @param <T>
  */
-    public interface IReclamation <T>{
-    
-    public void ajouterReclamation(T t);
+public interface IReclamation<T> {
 
-    public void supprimerReclamation(T t);
+    public boolean ajouterReclamation(T t);
 
-    public void updateReclamation(T t);
+    public boolean supprimerReclamation(int idRec);
 
-    public List<T> displayReclamation();
-    
+    public boolean updateReclamation(T t);
+
+    public List<T> displayReclamation(T t);
+
     public void PrioriteRec();
-    
+
+    public int contraintModifier24h(int idRec);
+
 }
