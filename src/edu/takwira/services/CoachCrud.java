@@ -7,8 +7,12 @@ package edu.takwira.services;
 
 import edu.takwira.entities.Coach;
 import edu.takwira.entities.Entrainement;
+import edu.takwira.entities.Equipe;
+import edu.takwira.entities.Stade;
 import edu.takwira.interfaces.ICoach;
-import esu.takwira.tools.Connection;
+import edu.takwira.tools.Connection;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +20,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -29,21 +37,35 @@ public class CoachCrud implements ICoach<Coach>{
     
     
     
+   
     public void ajouterCoach(Coach c) {
 
 try {
-            String requete= "INSERT INTO coach(nom_coach, prenom_coach, date_naissance, grade, date_fin_contrat, adresse_mail, salaire)"
-                    + "VALUES (?,?,?,?,?,?,?)";
+           String requete= "INSERT INTO coach(nom_coach, prenom_coach, date_naissance, grade, date_fin_contrat, adresse_mail, salaire, nb_trophe_locaux, nb_trophe_internationaux, formation_prefere, image_formation, image_coach, age, mdp_coach)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = Connection.getInstance().getCnx()
                     .prepareStatement(requete);
-          //  pst.setInt(1, c.getId_coach());
-            pst.setString(1, c.getNom_coach());
-            pst.setString(2, c.getPrenom_coach());
-            pst.setDate(3, c.getDate_naissance());
-            pst.setString(4, c.getGrade());
-            pst.setDate(5, (Date) c.getDate_fin_contrat());
-            pst.setString(6, c.getAdresse_mail());
-            pst.setFloat(7, c.getSalaire());
+            pst.setInt    (1, c.getId_coach());
+            pst.setString (1, c.getNom_coach());
+            pst.setString (2, c.getPrenom_coach());
+            pst.setDate   (3, c.getDate_naissance());
+            pst.setString (4, c.getGrade());
+            pst.setDate   (5, (Date) c.getDate_fin_contrat());
+            pst.setString (6, c.getAdresse_mail());
+            pst.setFloat   (7, c.getSalaire());
+            pst.setInt(8, c.getNb_trophe_locaux());
+            pst.setInt(9, c.getNb_trophe_locaux());
+            pst.setString(10, c.getFormation_prefere());
+            pst.setString(11, c.getImage_formation());
+            pst.setString(12, c.getImage_coach());
+            pst.setInt(13,c.getAge());
+            pst.setString(14, c.getMdp_coach());
+
+            
+
+
+
+
 
 
             
@@ -82,9 +104,8 @@ try {
     public void updateCoach(Coach c) {
         
          try {
-            String requete = "UPDATE coach SET nom_coach=?, prenom_coach=?, date_naissance=?, grade=?, date_fin_contrat=?, adresse_mail=?, salaire=? WHERE id_coach=?";
-            PreparedStatement pst = Connection.getInstance().getCnx()
-                    .prepareStatement(requete);
+            String requete = "UPDATE coach SET nom_coach=?,prenom_coach=?,date_naissance=?,grade=?,date_fin_contrat=?,adresse_mail=?,salaire=?,nb_trophe_locaux=?,nb_trophe_internationaux=?,formation_prefere=? WHERE id_coach=?";
+            PreparedStatement pst = Connection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, c.getNom_coach());
             pst.setString(2, c.getPrenom_coach());
             pst.setDate(3, c.getDate_naissance());
@@ -92,7 +113,13 @@ try {
             pst.setDate(5,c.getDate_fin_contrat());
             pst.setString(6, c.getAdresse_mail());
             pst.setFloat(7, c.getSalaire());
-            pst.setInt(8, c.getId_coach());
+            pst.setInt(8, c.getNb_trophe_locaux());
+            pst.setInt(9, c.getNb_trophe_internationaux());
+            pst.setString(10, c.getFormation_prefere());
+            pst.setInt(11, c.getId_coach());
+
+
+
 
 
 
@@ -125,7 +152,53 @@ try {
                     .createStatement();
             ResultSet rs =  st.executeQuery(requete);
             while(rs.next()){
-                Coach c = new Coach();
+                
+            Coach c = new Coach();
+
+            
+                ImageView img = new ImageView();
+                img.setFitWidth(50);
+                img.setFitHeight(50);
+                
+                     Image image;
+                      try {
+                       image = new Image(new FileInputStream((rs.getString("image_coach"))));
+                       
+                        img.setImage(image);
+                        
+                       img.setPreserveRatio(true);
+                 
+                  
+                  
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CoachCrud.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 
+                      
+                      
+                      
+                      ImageView imgformation = new ImageView();
+                      
+                        imgformation.setFitWidth(50);
+                        imgformation.setFitHeight(50);
+
+                        
+                        Image imageformation;
+                      try {
+                       imageformation = new Image(new FileInputStream((rs.getString("image_formation"))));
+                       
+                        imgformation.setImage(imageformation);
+                        
+                       imgformation.setPreserveRatio(true);
+                       
+                  
+                  
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CoachCrud.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
                 c.setId_coach(rs.getInt(1));
                 c.setNom_coach(rs.getString(2));
                 c.setPrenom_coach(rs.getString(3));
@@ -134,17 +207,14 @@ try {
                 c.setDate_fin_contrat(rs.getDate(6));
                 c.setAdresse_mail(rs.getString(7));
                 c.setSalaire(rs.getFloat(8));
-
-
+                c.setNb_trophe_locaux(rs.getInt(9));
+                c.setNb_trophe_internationaux(rs.getInt(10));
+                c.setFormation_prefere(rs.getString(11));
+                c.setImagedisplay(img);
+                c.setImagedisplayformation(imgformation);
+ 
                 coachList.add(c);
-                
-                
-                
-                
-                
-                
-                
-                
+                     
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -152,33 +222,26 @@ try {
         return coachList;
     }
 
+    
+    
+    
    // @Override
     public void supprimerCoach_fin_contrat() {
                 
-     // Date now = new Date();
    
        long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
-        System.err.println(date);
-     
+        
         try {
             String requete = "DELETE FROM coach where date_fin_contrat <= '"+date+"' ";
             
-            
-            
-//           PreparedStatement pst = Connection.getInstance().getCnx()
-//                    .prepareStatement(requete);
-//           pst.setDate(1, date);
-//            pst.executeUpdate();
-            
+           
              Statement st = Connection.getInstance().getCnx()
                     .createStatement();
             st.executeUpdate(requete);
             
             
-            
-            
-            System.out.println("Coach supprimée");
+            System.out.println("Tableau coaxh a ete mis a jour");
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -244,17 +307,16 @@ try {
          
        
 
-String s;
+ String coach;
         double salaire_max,salaire_min,total_salaire;
-            s = Stream.of(coachList.stream().count(),
+            coach = Stream.of(coachList.stream().count(),
                     salaire_max= coachList.stream().mapToDouble(e ->e.getSalaire()).max().getAsDouble(),
                     salaire_min=coachList.stream().mapToDouble(e -> e.getSalaire()).min().getAsDouble(),
                     total_salaire=coachList.stream().mapToDouble(e -> e.getSalaire()).sum())
-                    
-                    .map(Object::toString) .collect(Collectors.joining("==="));
+                                .map(Object::toString) .collect(Collectors.joining("==="));
                                      
             
-                         System.out.println(s);
+                       //  System.out.println("Le nombre des coachs disponible  "+coach+"\n");
 
                          for(int i=0;i<coachList.size();i++)
                          {
@@ -272,7 +334,7 @@ String s;
                          
                          
                          }
-                         System.out.println("Le totale des salire des coach est  "+total_salaire+" DT");
+                         System.out.println("Le totale des salaire des coachs est  "+total_salaire+" DT");
                           
                           
                           
@@ -318,10 +380,10 @@ String s;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            
         }
-
-
-
+      
+        
  List<Entrainement> entrainementtab = new ArrayList<>();
         try {
             String requete = "SELECT * FROM entrainement";
@@ -333,9 +395,9 @@ String s;
                 e.setId_entrainement(rs.getInt(1));
                 e.setDate_entrainement(rs.getDate(3));
                 e.setDuree(rs.getInt(2));
-                e.setId_joueur(rs.getInt(6));
+                e.setId_equipe(rs.getInt(6));
                 e.setId_coach(rs.getInt(4));
-                e.setId_terrain(rs.getInt(5));
+                e.setId_stade(rs.getInt(5));
 
 
 
@@ -346,7 +408,55 @@ String s;
         }
         
         
-        int x;
+        
+        
+            
+         List<Equipe> equipetab = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM equipe";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Equipe e = new Equipe();
+                e.setId_equipe(rs.getInt(1));
+                e.setNom_equipe(rs.getString(2));
+               
+
+
+
+                equipetab.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        
+        
+         List<Stade> Stadetab = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM stade";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Stade e = new Stade();
+                e.setId_stade(rs.getInt(1));
+                e.setNom_stade(rs.getString(2));
+               
+
+
+
+                Stadetab.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        //System.out.println(Stadetab);
+        
+
         
         for(int j=0;j<entrainementtab.size();j++)
         {
@@ -355,59 +465,184 @@ String s;
         
         for(int i=0;i<coachList.size();i++)
         {
-            if(coachList.get(i).getId_coach()==entrainementtab.get(j).getId_coach())
+            for(int k=0;k<Stadetab.size();k++)
+        {
+             for(int l=0;l<equipetab.size();l++)
+        {
             
-            System.out.println("Le coach"+coachList.get(i).getNom_coach()+"Afefcte a l'entrainement qui se dreoule Date Entrainement"+entrainementtab.get(j).getDate_entrainement()+"\n");
-        }
+            if(coachList.get(i).getId_coach()==entrainementtab.get(j).getId_coach() && entrainementtab.get(j).getId_stade()==Stadetab.get(k).getId_stade()&& equipetab.get(l).getId_equipe()==entrainementtab.get(j).getId_equipe() )
+            
+                System.out.println("Le coach  "+coachList.get(i).getNom_coach()+"  "+coachList.get(i).getPrenom_coach()+"  Afefcte pour entrainer l'equipe"+equipetab.get(l).getNom_equipe()+" qui se dreoule a   "+entrainementtab.get(j).getDate_entrainement()+"  A stade  "+Stadetab.get(k).getNom_stade()+"\n");
+        }       }
        
         }
 
+        }
 
 
-
+        
+        
+        
+        
 
 
 
 
     }
+//@Override
+    public List<Stade> afficherstade() {
 
-  
-    
-    
-    
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
+ List<Stade> stadeliste = new ArrayList<>();
+      
+
+ try {
+            String requete = "SELECT * FROM stade";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Stade c = new Stade();
+                c.setId_stade(rs.getInt(1));
+                c.setNom_stade(rs.getString(2));
+                stadeliste.add(c);
+                     
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return stadeliste;
+    }
+       
+    
+    
+    
+        public List<Equipe> afficherequipe() {
+
+
+
+ List<Equipe> equipeliste = new ArrayList<>();
+      
+
+ try {
+            String requete = "SELECT * FROM equipe";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Equipe c = new Equipe();
+                c.setId_equipe(rs.getInt(1));
+                c.setNom_equipe(rs.getString(2));
+                equipeliste.add(c);
+                       }
+        } catch (SQLException ex) {
+            System. out.println(ex.getMessage());
+        }
+        return equipeliste;
+    }
+    
+    
+    
+        
+        
+        
+        
+        
+    public List<Coach> afficherCoachsFront(int identifiant) {
+
+
+
+ List<Coach> coachList = new ArrayList<>();
  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
+ 
+ 
+ 
+        try {
+            String requete = "SELECT * FROM coach where id_coach = '"+identifiant+"'   ";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                
+            Coach c = new Coach();
 
+            
+                ImageView img = new ImageView();
+                
+                     Image image;
+                      try {
+                       image = new Image(new FileInputStream((rs.getString("image_coach"))));
+                       
+                        img.setImage(image);
+                        
+                       img.setPreserveRatio(true);
+                 
+                  
+                  
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CoachCrud.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 
+                      
+                      
+                      
+                      ImageView imgformation = new ImageView();
+
+             
+                        Image imageformation;
+                      try {
+                       imageformation = new Image(new FileInputStream((rs.getString("image_formation"))));
+                       
+                        imgformation.setImage(imageformation);
+                        
+                       imgformation.setPreserveRatio(true);
+                 
+                  
+                  
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CoachCrud.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                      
+                      
+                
+                c.setId_coach(rs.getInt(1));
+                c.setNom_coach(rs.getString(2));
+                c.setPrenom_coach(rs.getString(3));
+                c.setDate_naissance(rs.getDate(4));
+                c.setGrade(rs.getString(5));
+                c.setDate_fin_contrat(rs.getDate(6));
+                c.setAdresse_mail(rs.getString(7));
+                c.setSalaire(rs.getFloat(8));
+                c.setNb_trophe_locaux(rs.getInt(9));
+                c.setNb_trophe_internationaux(rs.getInt(10));
+                c.setFormation_prefere(rs.getString(11));
+                
+                c.setImagedisplay(img);
+                c.setImagedisplayformation(imgformation);
+                
+                coachList.add(c);
+                     
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return coachList;
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     
 }

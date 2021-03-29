@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="793.0" prefWidth="1082.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="takwira.CalendrierentrainementController">
+   <children>
+      <Pane layoutX="12.0" layoutY="8.0" prefHeight="777.0" prefWidth="167.0" styleClass="sidebar" stylesheets="@Reclamation.css">
+         <children>
+            <Label layoutX="24.0" layoutY="97.0" prefHeight="32.0" prefWidth="161.0" text="Entrainement" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Regular" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="goliste" layoutX="45.0" layoutY="18.0" onAction="#goliste" prefHeight="60.0" prefWidth="65.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="&lt;--" textFill="WHITE" />
+         </children>
+      </Pane>
+      <TableView fx:id="tabview" layoutX="224.0" layoutY="129.0" onMouseClicked="#setOnMouseClicked" prefHeight="390.0" prefWidth="793.0" stylesheets="@Reclamation.css">
+         <columns>
+            <TableColumn fx:id="nom_coach" prefWidth="88.0" text="Nom_coach" />
+            <TableColumn fx:id="prenom_coach" prefWidth="174.0" text="Prenom_Coach" />
+            <TableColumn fx:id="date_entrainement" prefWidth="186.0" text="Date_entrainement" />
+            <TableColumn fx:id="nom_equipe" minWidth="8.0" prefWidth="144.0" text="Nom_equipe" />
+            <TableColumn fx:id="nom_stade" prefWidth="145.0" text="Nom_Stade" />
+         </columns>
+      </TableView>
+      <Pane fx:id="PutReclamationCard" layoutX="445.0" layoutY="40.0" prefHeight="46.0" prefWidth="316.0" styleClass="CardReclamation" stylesheets="@Reclamation.css">
+         <children>
+            <Text fill="WHITE" layoutX="29.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calendrier Entrainement" wrappingWidth="256.28759765625">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="445.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/232_thumb.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

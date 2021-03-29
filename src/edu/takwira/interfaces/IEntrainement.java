@@ -5,8 +5,8 @@
  */
 package edu.takwira.interfaces;
 
+import edu.takwira.entities.Entrainement;
 import java.util.List;
-//import static javafx.scene.input.KeyCode.T;
 
 /**
  *
@@ -18,6 +18,8 @@ public interface IEntrainement<T> {
      public void supprimerEntrainement(T t);
      public void updateEntrainement(T t);
      public List<T> afficherEntrainement();
+     public List<Entrainement> coachplusentraine();
+     
      
     
     

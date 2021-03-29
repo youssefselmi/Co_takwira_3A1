@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="707.0" prefWidth="1018.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="takwira.StatistiquecoachController">
+   <children>
+      <BarChart fx:id="SalaryChart" layoutX="55.0" layoutY="52.0" prefHeight="618.0" prefWidth="881.0" title="Salaire">
+        <xAxis>
+          <CategoryAxis label="Nom" prefHeight="41.0" prefWidth="797.0" tickLabelRotation="162.9" fx:id="x">
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor>
+            </CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="salaire" nodeOrientation="LEFT_TO_RIGHT" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
