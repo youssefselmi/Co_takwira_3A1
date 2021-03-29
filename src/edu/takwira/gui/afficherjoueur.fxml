@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="374.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.takwira.gui.AfficherjoueurController">
+   <children>
+      <ImageView fx:id="stade" fitHeight="422.0" fitWidth="604.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/terrain.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomEquipe" layoutX="252.0" layoutY="-3.0" prefHeight="32.0" prefWidth="112.0" text="nom Equipe" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="goal" contentDisplay="RIGHT" layoutX="74.0" layoutY="175.0" prefHeight="32.0" prefWidth="160.0" text="goal" textAlignment="CENTER" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="attaque2" layoutX="422.0" layoutY="202.0" prefHeight="32.0" prefWidth="160.0" text="attaque" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="attaque1" layoutX="418.0" layoutY="141.0" prefHeight="32.0" prefWidth="160.0" text="attaque" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Circle fx:id="cerclegoal" fill="DODGERBLUE" layoutX="50.0" layoutY="194.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="milieu1" layoutX="350.0" layoutY="74.0" prefHeight="32.0" prefWidth="160.0" text="milieu" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="milieu4" layoutX="349.0" layoutY="273.0" prefHeight="32.0" prefWidth="160.0" text="milieu" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Circle fx:id="cerclegoal1" fill="DODGERBLUE" layoutX="518.0" layoutY="160.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal2" fill="DODGERBLUE" layoutX="519.0" layoutY="218.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="def1" layoutX="173.0" layoutY="49.0" prefHeight="32.0" prefWidth="160.0" text="défenseur" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="milieu2" layoutX="363.0" layoutY="173.0" prefHeight="32.0" prefWidth="160.0" text="Milieu" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="milieu3" layoutX="222.0" layoutY="170.0" prefHeight="32.0" prefWidth="160.0" text="milieu" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Circle fx:id="cerclegoal11" fill="DODGERBLUE" layoutX="328.0" layoutY="95.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal13" fill="DODGERBLUE" layoutX="333.0" layoutY="191.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal14" fill="DODGERBLUE" layoutX="199.0" layoutY="192.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal15" fill="DODGERBLUE" layoutX="326.0" layoutY="291.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal131" fill="DODGERBLUE" layoutX="132.0" layoutY="123.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal132" fill="DODGERBLUE" layoutX="133.0" layoutY="271.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal1311" fill="DODGERBLUE" layoutX="152.0" layoutY="66.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cerclegoal13111" fill="DODGERBLUE" layoutX="162.0" layoutY="313.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="def2" layoutX="157.0" layoutY="107.0" prefHeight="32.0" prefWidth="160.0" text="défenseur" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="déf3" layoutX="161.0" layoutY="249.0" prefHeight="32.0" prefWidth="160.0" text="défenseur" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="def4" layoutX="185.0" layoutY="298.0" prefHeight="32.0" prefWidth="160.0" text="défenseur" textFill="#171616">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

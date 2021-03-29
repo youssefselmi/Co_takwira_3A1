@@ -1,5 +1,6 @@
 package edu.takwira.entities;
 
+
 import java.sql.Date;
 
 
@@ -14,30 +15,49 @@ import java.sql.Date;
  * @author pc_dell
  */
 public class Joueur {
-    private int id_joueur;
-    private String nom_joueur	;
-    private String prenom_joueur;
-    private float age;
-    private Date date_naissance;	
-     private int numero;	
-     private String adresse_mail;
-     private String ville;	
-     private int id_equipe;
-     //private String nom_equipe;
+    int id_joueur;
+    String nom_joueur	;
+    String prenom_joueur;
+    Date dateNaissance;
+     int age_joueur;	
+     int numero;	
+     String adresse_mail;
+     String ville;	
+     int id_equipe;
+     String categorie;
+     String position;
+     String image;
+     String password;
+     String nom_equipe;
 
     public Joueur() {
     }
 
-    public Joueur(int id_joueur, String nom_joueur, String prenom_joueur,Date date_naissance, int numero, String adresse_mail, String ville, int id_equipe) {
-        this.id_joueur = id_joueur;
+    public Joueur(String nom_joueur, String prenom_joueur, Date DateNaissance,int age_joueur, int numero, String adresse_mail, String ville,String categorie,String position,int id_equipe,String image,String password) {
         this.nom_joueur = nom_joueur;
         this.prenom_joueur = prenom_joueur;
-        this.date_naissance = date_naissance;
+        this.dateNaissance = DateNaissance;
+        this.age_joueur=age_joueur;
         this.numero = numero;
         this.adresse_mail = adresse_mail;
         this.ville = ville;
+                this.categorie=categorie;
+        this.position=position;
+
         this.id_equipe = id_equipe;
+        this.image=image;
+        this.password=password;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+  
 
     public int getId_joueur() {
         return id_joueur;
@@ -50,24 +70,19 @@ public class Joueur {
     public String getPrenom_joueur() {
         return prenom_joueur;
     }
-    
 
-   public float getAge_joueur() {
-        return age;
-    }
-
-    public Date getDate_naissance() {
-        return date_naissance;
-    }
-/*
-    public String getNom_equipe() {
-        return nom_equipe;
+    public int getAge_joueur() {
+        return age_joueur;
     }
 
     public void setNom_equipe(String nom_equipe) {
         this.nom_equipe = nom_equipe;
     }
-*/
+
+    public String getNom_equipe() {
+        return nom_equipe;
+    }
+
    
 
     public int getNumero() {
@@ -86,6 +101,15 @@ public class Joueur {
         return id_equipe;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+
     public void setId_joueur(int id_joueur) {
         this.id_joueur = id_joueur;
     }
@@ -98,8 +122,8 @@ public class Joueur {
         this.prenom_joueur = prenom_joueur;
     }
 
-   public void setAge_joueur(float age) {
-        this.age = age;
+    public void setAge_joueur(int age_joueur) {
+        this.age_joueur = age_joueur;
     }
 
    
@@ -116,24 +140,42 @@ public class Joueur {
         this.ville = ville;
     }
 
-    public void setDate_naissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
-    }
-    
-
     public void setId_equipe(int id_equipe) {
         this.id_equipe = id_equipe;
     }
 
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     @Override
     public String toString() {
-        return "Joueur{" + "id_joueur=" + id_joueur + ", nom_joueur=" + nom_joueur + ", prenom_joueur=" + prenom_joueur +  ",age=" +age + ",Date de Naissance=" + date_naissance+ ", numero=" + numero + ", adresse_mail=" + adresse_mail + ", ville=" + ville + ", id_equipe=" + id_equipe + '}';
+        return "Joueur{" + "id_joueur=" + id_joueur + ", nom_joueur=" + nom_joueur + ", prenom_joueur=" + prenom_joueur + ", dateNaissance=" + dateNaissance + ", age_joueur=" + age_joueur + ", numero=" + numero + ", adresse_mail=" + adresse_mail + ", ville=" + ville + ", categorie=" + categorie + ", position=" + position +", id_equipe=" + id_equipe +  '}';
     }
-    public void afficher ()
-    {
-     System.out.println("Le nom de joueur "+this.nom_joueur+" le prenom du joueur "+this.prenom_joueur);
-        
-    }
+    
+
+    
+
      
 
 

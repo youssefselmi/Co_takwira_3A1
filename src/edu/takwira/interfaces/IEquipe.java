@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface IEquipe<T> {
      public void ajouterEquipe(T t);
-     public void supprimerEquipe(T t);
-     public void updateEquipe(T t);
+     public void supprimerEquipe(int ie);
+     public void updateEquipe(int ie,T t);
      public List<T> afficherEquipe(); 
     
     
