@@ -9,6 +9,8 @@ import edu.takwira.entities.Equipe;
 import edu.takwira.entities.Joueur;
 import edu.takwira.interfaces.IJoueur;
 import edu.takwira.tools.Connection;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +21,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 
 /**  String requete= "INSERT INTO joueur( nom_joueur,prenom_joueur,date_naissance,numero,adresse_mail,ville,id_equipe)"
@@ -64,16 +70,28 @@ public class JoueurCrud implements IJoueur<Joueur> {
     }*/
 
  
-    @Override
-    public List afficherJoueur() {
+    //@Override
+    public List afficherJoueur(int id, String categorie) {
               List<Joueur> joueurList = new ArrayList<>();
+
         try {
-            String requete = "SELECT * FROM joueur";
+            String requete = "SELECT * FROM joueur where (id_equipe='"+id+"' and categorie='"+categorie+"')";
+            
+            
+            System.out.println(requete);
             Statement st = Connection.getInstance().getCnx()
                     .createStatement();
             ResultSet rs =  st.executeQuery(requete);
             while(rs.next()){
                 Joueur j = new Joueur();
+                
+                                ImageView img = new ImageView();
+
+           String ImageUrl = "http://localhost/images/";
+     
+            Image image = new Image(ImageUrl + j.getImage());
+        
+            img.setImage(image);
                 j.setId_joueur(rs.getInt(1));
                 j.setNom_joueur(rs.getString(2));
                 j.setPrenom_joueur(rs.getString(3));
@@ -92,6 +110,7 @@ public class JoueurCrud implements IJoueur<Joueur> {
            j.setPosition(rs.getString(10));
 
             j.setId_equipe(rs.getInt(11));
+            j.setImage(rs.getString(12));
                 joueurList.add(j);
             }
         } catch (SQLException ex) {
@@ -103,8 +122,8 @@ public class JoueurCrud implements IJoueur<Joueur> {
     @Override
     public void ajouterJoueur(Joueur t) {
  try {
-            String requete= "INSERT INTO joueur( nom_joueur,prenom_joueur,date_naissance,age_joueur,numero,adresse_mail,ville,categorie,position,id_equipe)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String requete= "INSERT INTO joueur( nom_joueur,prenom_joueur,date_naissance,age_joueur,numero,adresse_mail,ville,categorie,position,id_equipe,image,password)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = Connection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, t.getNom_joueur());
@@ -120,6 +139,9 @@ public class JoueurCrud implements IJoueur<Joueur> {
 
 
             pst.setInt(10, t.getId_equipe());
+            pst.setString(11, t.getImage());
+            pst.setString(12, t.getPassword());
+           // pst.setString(12, t.getPassword());
             
             pst.executeUpdate();
             System.out.println("Joueur inserée");
@@ -129,12 +151,12 @@ public class JoueurCrud implements IJoueur<Joueur> {
         }     }
 
     @Override
-    public void supprimerJoueur(Joueur t) {
+    public void supprimerJoueur(int idj) {
 try {
-            String requete = "DELETE FROM joueur where id_joueur=?";
+            String requete = "DELETE FROM joueur where id_joueur="+idj+"";
             PreparedStatement pst = Connection.getInstance().getCnx()
                     .prepareStatement(requete);
-            pst.setInt(1, t.getId_joueur());
+           // pst.setInt(1, t.getId_joueur());
             pst.executeUpdate();
             System.out.println("joueur supprimée");
         } catch (SQLException ex) {
@@ -142,9 +164,9 @@ try {
         }    }
 
     @Override
-    public void updateJoueur(Joueur t) {
+    public void updateJoueur(int idj,Joueur t) {
           try {
-            String requete = "UPDATE joueur SET nom_joueur=?, prenom_joueur=?, age_joueur=?, numero=?, adresse_mail=?, ville=?, id_equipe=?  WHERE id_joueur=?";
+            String requete = "UPDATE joueur SET nom_joueur=?, prenom_joueur=?, age_joueur=?, numero=?, adresse_mail=?, ville=?, id_equipe=?  WHERE id_joueur="+idj+"";
             PreparedStatement pst = Connection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, t.getNom_joueur());
@@ -265,11 +287,53 @@ if(rs.getString("categorie").equals("junior"))
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+
+ public List afficherJoueur1() {
+              List<Joueur> joueurList = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM joueur ";
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Joueur j = new Joueur();
+                
+                                ImageView img = new ImageView();
+
+           String ImageUrl = "http://localhost/images/";
      
+            Image image = new Image(ImageUrl + j.getImage());
+        
+            img.setImage(image);
+                j.setId_joueur(rs.getInt(1));
+                j.setNom_joueur(rs.getString(2));
+                j.setPrenom_joueur(rs.getString(3));
+               j.setDateNaissance(rs.getDate(4));
+                        j.setAge_joueur(rs.getInt(5));
 
 
+           
+            j.setNumero(rs.getInt(6));
+                        j.setAdresse_mail(rs.getString(7));
 
 
+            j.setVille(rs.getString(8));
+                        j.setCategorie(rs.getString(9));
+
+           j.setPosition(rs.getString(10));
+
+            j.setId_equipe(rs.getInt(11));
+            j.setImage(rs.getString(12));
+                joueurList.add(j);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return joueurList;
+    }
         
 
 
@@ -290,6 +354,76 @@ int agenew = ?
 
 
 */
+       public int recupereridEquipe(String nom_equipe)
+      {
+          int id=0;
+                   String req="select *  from equipe where nom_equipe = '"+nom_equipe+"'";
+
+           try {
+          
+           
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(req);
+            
+     while(rs.next())
+     {
+            id=rs.getInt(1);
+     }
+           }
+          catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           return id;
+      }
+ public String recuperernomEquipe(int id_equipe)
+      {
+          String nom="";
+                   String req="select *  from equipe where id_e = '"+id_equipe+"'";
+
+           try {
+          
+           
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(req);
+            
+     while(rs.next())
+     {
+            nom=rs.getString(2);
+     }
+           }
+          catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           return nom;
+      }
+public List recupererpositionEquipe(int id_equipe)
+      {
+          List<String> positionjoueur=new ArrayList<>();
+         String pos="";
+                   String req="select *  from joueur where id_equipe = '"+id_equipe+"'";
+
+           try {
+          
+           
+            Statement st = Connection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(req);
+            
+     while(rs.next())
+     {
+            pos=rs.getString(10);
+     }
+     positionjoueur.add(pos);
+     
+           }
+          catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           return positionjoueur;
+      }
+
 
     }
-}
+

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -27,7 +28,7 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="TableView" layoutX="138.0" layoutY="111.0" prefHeight="288.0" prefWidth="734.0" stylesheets="@Reclamation.css">
+      <TableView fx:id="TableView" layoutX="138.0" layoutY="111.0" onMouseClicked="#setOnMouseClicked" prefHeight="288.0" prefWidth="734.0" stylesheets="@Reclamation.css">
          <columns>
             <TableColumn fx:id="nom_joueur" prefWidth="83.0" text="nom " />
             <TableColumn fx:id="prenom_joueur" prefWidth="86.99996948242188" text="Prenom " />
@@ -38,7 +39,8 @@
             <TableColumn fx:id="ville" minWidth="8.0" prefWidth="74.0" text="ville" />
             <TableColumn fx:id="categorie" minWidth="8.0" prefWidth="75.0" text="categ" />
             <TableColumn fx:id="position" minWidth="8.0" prefWidth="75.0" text="position" />
-            <TableColumn fx:id="id_equipe" minWidth="8.0" prefWidth="57.0" text="id equipe" />
+            <TableColumn fx:id="id_equipe" minWidth="0.0" prefWidth="0.0" text="id equipe" />
+            <TableColumn fx:id="image_joueur" minWidth="8.0" prefWidth="114.0" text="Image joueur" />
          </columns>
       </TableView>
       <Pane layoutX="20.0" layoutY="20.0" prefHeight="750.0" prefWidth="103.0" styleClass="sidebar" stylesheets="@Reclamation.css">
@@ -48,7 +50,7 @@
                   <Font name="Monospaced Regular" size="15.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnAjouter1" layoutY="178.0" onAction="#goajoutjoueur" prefHeight="74.0" prefWidth="96.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="ajout equipe" textFill="WHITE" />
+            <JFXButton fx:id="btnAjouter1" layoutY="178.0" onAction="#goajoutjoueur" prefHeight="74.0" prefWidth="96.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="ajout joueur" textFill="WHITE" />
          </children>
       </Pane>
       <JFXTextField fx:id="id_joueur1" layoutX="195.0" layoutY="504.0" text="Id_joueur" />
@@ -62,5 +64,6 @@
       <JFXDatePicker fx:id="date_naissance1" layoutX="623.0" layoutY="578.0" promptText="Date de naissance" />
       <JFXTextField fx:id="age" layoutX="614.0" layoutY="669.0" text="Age" />
       <JFXButton fx:id="btnAjouter" layoutX="437.0" layoutY="702.0" prefHeight="45.0" prefWidth="128.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Delete" textFill="WHITE" />
+      <ImageView fx:id="imagej" fitHeight="150.0" fitWidth="200.0" layoutX="339.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

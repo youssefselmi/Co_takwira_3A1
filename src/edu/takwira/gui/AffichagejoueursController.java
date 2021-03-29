@@ -11,9 +11,10 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import edu.takwira.entities.Equipe;
 import edu.takwira.entities.Joueur;
-import static edu.takwira.gui.AfficherEquipeController.seletionedEquipe;
 import edu.takwira.services.EquipeCrud;
 import edu.takwira.services.JoueurCrud;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.String.valueOf;
 import java.net.URL;
@@ -21,6 +22,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,9 +33,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -96,18 +103,36 @@ public class AffichagejoueursController implements Initializable {
     
     @FXML
     private TableColumn<Joueur, String> categorie;
+    private int id;
+    
+
+       // seletionedEquipe = TableView.getSelectionModel().getSelectedItem();
+       int id3= HomeEquipeController.seletionedEquipee.getId_equipe();   
+       
+            JoueurCrud jcd = new JoueurCrud();
     @FXML
+    private TableColumn<?, ?> col_NomPrenomCoach;
+    @FXML
+    private TableColumn<Equipe, ImageView> image_joueur;
+    @FXML
+    private ImageView imagej;
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        JoueurCrud jcd = new JoueurCrud();
+        Joueur j;
+
         jcd.miseajour();
-                   List<Joueur> ListJoueur = new ArrayList<>();
+                   haha();
              
-                   ListJoueur=jcd.afficherJoueur();
+                
+
+            /*       List<Joueur> ListJoueur = new ArrayList<>();
+             
+                   ListJoueur=jcd.afficherJoueur(id);
 
                    ObservableList<Joueur> Liste = FXCollections.observableArrayList(ListJoueur);
                    
@@ -128,11 +153,49 @@ public class AffichagejoueursController implements Initializable {
 
 
         
-        TableView.setItems(Liste);
+        TableView.setItems(Liste);*/
 
         // TODO
     }    
+    public void haha()
+    {
+         List<Joueur> ListJoueur = new ArrayList<>();
+             
+                   ListJoueur=jcd.afficherJoueur(id3,"");
 
+                   ObservableList<Joueur> Liste = FXCollections.observableArrayList(ListJoueur);
+                   
+        //id_joueur.setCellValueFactory(new PropertyValueFactory<Joueur,Integer>("id_joueur"));
+        nom_joueur.setCellValueFactory(new PropertyValueFactory<Joueur,String>("nom_joueur"));
+        prenom_joueur.setCellValueFactory(new PropertyValueFactory<Joueur,String>("prenom_joueur"));
+        date_naissance.setCellValueFactory(new PropertyValueFactory<Joueur,Date>("dateNaissance"));
+        numero.setCellValueFactory(new PropertyValueFactory<Joueur,Integer>("numero"));
+        mail.setCellValueFactory(new PropertyValueFactory<Joueur,String>("adresse_mail"));
+        ville.setCellValueFactory(new PropertyValueFactory<Joueur,String>("ville"));
+                categorie.setCellValueFactory(new PropertyValueFactory<Joueur,String>("categorie"));
+
+                position.setCellValueFactory(new PropertyValueFactory<Joueur,String>("position"));
+
+       id_equipe.setCellValueFactory(new PropertyValueFactory<Joueur,Integer>("id_equipe"));
+     image_joueur.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+
+        
+        TableView.setItems(Liste);
+    }
+   /* private void setCellfromtabletoImage() {
+        TableView.setOnMouseClicked(e -> {
+
+            Joueur j = TableView.getItems().get(TableView.getSelectionModel().getSelectedIndex());
+            String ImageUrl = "http://localhost/images/";
+            j = TableView.getItems().get(TableView.getSelectionModel().getSelectedIndex());
+     
+            Image image = new Image(ImageUrl + j.getImage());
+        
+            imagej.setImage(image);
+        }
+        );
+    }*/
   /*  @FXML
     private void setOnMouseClicked(MouseEvent event) {
          seletionedJoueur = TableView.getSelectionModel().getSelectedItem();
@@ -206,5 +269,18 @@ public class AffichagejoueursController implements Initializable {
         app_stage.setScene(home_page_scene);
         app_stage.show();
     }
+
+    @FXML
+    private void setOnMouseClicked(MouseEvent event) {
+        
+            Joueur j = TableView.getItems().get(TableView.getSelectionModel().getSelectedIndex());
+            String ImageUrl = "http://localhost/images/";
+            j = TableView.getItems().get(TableView.getSelectionModel().getSelectedIndex());
+     
+            Image image = new Image(ImageUrl + j.getImage());
+        
+            imagej.setImage(image);
+    }
+
     
 }

@@ -40,7 +40,7 @@ public class CoTakwira {
      String datejoueur="2004-03-11";
     Date Datenaissance=Date.valueOf(datejoueur);
    
- Joueur j4=new Joueur(60,"aaa","selmi",Datenaissance,0,13,"babababa","Tunis","","attaque",7);
+ Joueur j4=new Joueur("aaa","selmi",Datenaissance,0,13,"babababa","Tunis","","attaque",7,"","");
  
   
 
@@ -74,18 +74,19 @@ if (month2 > month1) {
   }
 }
         System.out.println("age : "+age);
-j4.setAge_joueur(age);
+/*
+        j4.setAge_joueur(age);
  if(age<18)
  {
      j4.setCategorie("junior");
  }
  else {     j4.setCategorie("sunior");
-}
+}*/
 
        // System.out.println(age);
-        jc.miseajour();
+      //  jc.miseajour();
         
- //jc.ajouterJoueur(j4);
+ jc.ajouterJoueur(j4);
    
      /* Joueur j1=new Joueur(3,"yassine","dabboussi",29,13,"yassinedaboussi","Tunis",2);
       Joueur j2=new Joueur(4,"maher","guerfali",28,13,"maherguerfli@gmail.com","Tunis",8);
@@ -98,7 +99,7 @@ j4.setAge_joueur(age);
 
 //jc.supprimerJoueur(j1);
       
-  jc.updateJoueur(j4);
+ // jc.updateJoueur(j4);
  
       //  System.out.println(jc.afficherJoueur());
         //................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................System.out.println(jc.afficherEquipeJoueur());

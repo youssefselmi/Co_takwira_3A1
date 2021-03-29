@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -23,10 +27,17 @@
                </children>
             </Pane>
             <JFXButton fx:id="btnAjouter" layoutX="326.0" layoutY="310.0" onAction="#AjouterEquipe" prefHeight="46.0" prefWidth="193.0" styleClass="btnAjouterReclamation" stylesheets="@Reclamation.css" text="Ajouter" textFill="WHITE" />
-            <JFXTextField fx:id="tfNomEquipe" layoutX="73.0" layoutY="60.0" promptText="Nom Equipe" />
-            <JFXTextField fx:id="tfnomcoach" layoutX="87.0" layoutY="204.0" promptText="Nom Coach" />
-            <JFXTextField fx:id="prenom" layoutX="394.0" layoutY="204.0" promptText="Prenom coach" />
-            <JFXComboBox fx:id="combocoach" layoutX="82.0" layoutY="126.0" onAction="#recupernom" prefHeight="31.0" prefWidth="168.0" promptText="Choisir id Coach" />
+            <JFXTextField fx:id="tfNomEquipe" layoutX="73.0" layoutY="135.0" promptText="Nom Equipe" />
+            <JFXComboBox fx:id="combocoach" layoutX="73.0" layoutY="208.0" prefHeight="31.0" prefWidth="168.0" promptText="Choisir id Coach" />
+            <ImageView fx:id="Imageview" fitHeight="150.0" fitWidth="142.0" layoutX="40.0" layoutY="310.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/Maillot_blanc.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="rec1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="93.0" layoutX="89.0" layoutY="344.0" stroke="BLACK" strokeType="INSIDE" width="14.0" />
+            <Rectangle fx:id="rec2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="93.0" layoutX="120.0" layoutY="344.0" stroke="BLACK" strokeType="INSIDE" width="14.0" />
+            <JFXColorPicker fx:id="colorpicker" layoutX="233.0" layoutY="385.0" />
+            <JFXTextField fx:id="nome" layoutX="87.0" layoutY="343.0" prefHeight="26.0" prefWidth="57.0" />
          </children></Pane>
       <Pane prefHeight="750.0" prefWidth="167.0" styleClass="sidebar" stylesheets="@Reclamation.css">
          <children>

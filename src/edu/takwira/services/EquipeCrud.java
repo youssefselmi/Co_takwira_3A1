@@ -31,7 +31,9 @@ public class EquipeCrud implements IEquipe<Equipe> {
             PreparedStatement pst = Connection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, t.getNom_equipe());
+
             pst.setInt(2, t.getId_coach());
+
             pst.executeUpdate();
             System.out.println("Equipe inserée");
             
@@ -113,7 +115,7 @@ public class EquipeCrud implements IEquipe<Equipe> {
       public int recupereridCoach(String nom_coach)
       {
           int id=0;
-                   String req="select *  from coach where nom_coach = '"+nom_coach+"'";
+                   String req="select *  from coach where CONCAT(nom_coach, ' ', prenom_coach) = '"+nom_coach+"'";
 
            try {
           
@@ -138,7 +140,7 @@ public class EquipeCrud implements IEquipe<Equipe> {
     public List<Equipe> afficherEquipe() {
            List<Equipe> equipeList = new ArrayList<>();
         try {
-            String requete = "SELECT equipe.*,coach.nom_coach FROM equipe INNER JOIN coach ON(equipe.id_coach=coach.id_coach)";
+            String requete = "SELECT equipe.*,coach.nom_coach,coach.prenom_coach FROM equipe INNER JOIN coach ON(equipe.id_coach=coach.id_coach)";
             Statement st = Connection.getInstance().getCnx()
                     .createStatement();
             ResultSet rs =  st.executeQuery(requete);
@@ -147,7 +149,10 @@ public class EquipeCrud implements IEquipe<Equipe> {
                 e.setId_equipe(rs.getInt(1));
                 e.setNom_equipe(rs.getString(2));
                 e.setId_coach(rs.getInt(3));
+
                 e.setNom_coach(rs.getString(4));
+                e.setPrenom_coach(rs.getString(5));
+
                 equipeList.add(e);
             }
         } catch (SQLException ex) {

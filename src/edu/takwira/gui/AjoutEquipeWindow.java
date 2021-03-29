@@ -15,28 +15,49 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
  * @author pc_dellAjout
  */
 public class AjoutEquipeWindow extends Application {
-    
-    @Override
-    public void start(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("affichagejoueurs.fxml"));
-            Scene scene = new Scene(root);
 
-            
-            primaryStage.setTitle("Liste Equipes!");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+    double xOffset, yOffset;
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("HomeEquipe.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("AfficherEquipe.fxml"));
+        Scene scene = new Scene(root);
+
+        // primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        primaryStage.show();
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+
     }
 
     /**
@@ -45,5 +66,5 @@ public class AjoutEquipeWindow extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

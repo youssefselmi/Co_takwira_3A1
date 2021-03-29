@@ -15,9 +15,10 @@ import java.util.Map;
  */
 public interface IJoueur<T> {
       public void ajouterJoueur(T t);
-     public void supprimerJoueur(T t);
-     public void updateJoueur(T t);
-     public List<T> afficherJoueur(); 
+     public void supprimerJoueur(int idj);
+     public void updateJoueur(int idj,T t);
+     public List<T> afficherJoueur(int id,String categorie); 
+
     // public Map<T> afficherEquipeJoueur();
     
 }

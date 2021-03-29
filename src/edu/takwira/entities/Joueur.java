@@ -26,12 +26,14 @@ public class Joueur {
      int id_equipe;
      String categorie;
      String position;
+     String image;
+     String password;
+     String nom_equipe;
 
     public Joueur() {
     }
 
-    public Joueur(int id_joueur, String nom_joueur, String prenom_joueur, Date DateNaissance,int age_joueur, int numero, String adresse_mail, String ville,String categorie,String position,int id_equipe) {
-        this.id_joueur = id_joueur;
+    public Joueur(String nom_joueur, String prenom_joueur, Date DateNaissance,int age_joueur, int numero, String adresse_mail, String ville,String categorie,String position,int id_equipe,String image,String password) {
         this.nom_joueur = nom_joueur;
         this.prenom_joueur = prenom_joueur;
         this.dateNaissance = DateNaissance;
@@ -43,6 +45,16 @@ public class Joueur {
         this.position=position;
 
         this.id_equipe = id_equipe;
+        this.image=image;
+        this.password=password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
   
@@ -63,6 +75,14 @@ public class Joueur {
         return age_joueur;
     }
 
+    public void setNom_equipe(String nom_equipe) {
+        this.nom_equipe = nom_equipe;
+    }
+
+    public String getNom_equipe() {
+        return nom_equipe;
+    }
+
    
 
     public int getNumero() {
@@ -79,6 +99,14 @@ public class Joueur {
 
     public int getId_equipe() {
         return id_equipe;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
     
 
