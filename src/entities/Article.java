@@ -6,6 +6,7 @@
 package entities;
 
 import java.util.Date;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -17,6 +18,63 @@ public class Article {
     String titre;
     String description;
     Date date;
+    String url;
+    ImageView img;
+
+    public Article(int id, String type, String titre, String description, String url, int id_personnel) {
+        this.id = id;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.url = url;
+        this.id_personnel = id_personnel;
+    }
+
+    public Article(int id, String type, String titre, String description, Date date, String url, int id_personnel) {
+        this.id = id;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.date = date;
+        this.url = url;
+        this.id_personnel = id_personnel;
+    }
+
+    public Article(String type, String titre, String description, Date date, ImageView img, int id_personnel) {
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.date = date;
+        this.img = img;
+        this.id_personnel = id_personnel;
+    }
+
+    
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    
+
+    
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Article(String type, String titre, String description, Date date, String url, int id_personnel) {
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.date = date;
+        this.url = url;
+        this.id_personnel = id_personnel;
+    }
     int id_personnel;
 
     public Article() {
@@ -27,6 +85,14 @@ public class Article {
         this.titre = titre;
         this.description = description;
         this.date = date;
+        this.id_personnel = id_personnel;
+    }
+
+    public Article(int id, String type, String titre, String description, int id_personnel) {
+        this.id = id;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
         this.id_personnel = id_personnel;
     }
 
@@ -91,6 +157,12 @@ public class Article {
     public String toString() {
         return "Article{" + "id=" + id + ", type=" + type + ", titre=" + titre + ", description=" + description + ", date=" + date + ", id_personnel=" + id_personnel + '}';
     }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+  
     
     
 }

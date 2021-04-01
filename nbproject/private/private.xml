@@ -3,9 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/DisplayCommentaireController.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/services/BadWordFilter.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/services/CommentaireService.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/DisplayCommentaire.fxml</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/AddCommentaireController.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/entities/Commentaire.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/DisplayArticleController.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/interfaces/ICommentaireService.java</file>
             <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/interfaces/IArticleService.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/ModifierArticleController.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/HomePage.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/entities/Article.java</file>
             <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/tests/MainClass.java</file>
             <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/tools/MyConnection.java</file>
+            <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/gui/AddArticleController.java</file>
             <file>file:/C:/Users/khali/Documents/NetBeansProjects/co_takwira/src/services/ArticleService.java</file>
         </group>
     </open-files>

@@ -8,6 +8,7 @@ package tests;
 import entities.Article;
 import entities.Commentaire;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
@@ -24,32 +25,45 @@ public class MainClass {
         MyConnection mc = MyConnection.getInstance();
         MyConnection mc2 = MyConnection.getInstance();
         System.out.println(mc.hashCode()+"--"+mc2.hashCode());
-        String str ="1985-05-05";
+        String str ="2021-03-05";
         Date date=Date.valueOf(str);
-        Article a = new Article(2,"Foot","ACM","Info",date,1);
+        Article a = new Article(7,"Foot","CSS","Info",date,1);
         ArticleService pcd = new ArticleService();
         //pcd.ajouterArticle(a);
         //pcd.supprimerArticle(a);
         //pcd.updateArticle(a);
-       // System.out.println(pcd.displayPersons());
+
+
+// System.out.println(pcd.displayPersons());
        List<Article> articlesList = new ArrayList<>();
      /*  articlesList=pcd.displayArticles();
        for(Article elem: articlesList)
        {
        	 System.out.println (elem);
        }*/
-     String rech="FCB";
+    
+     
+     /*String rech="FCB";
       articlesList=pcd.chercher_article(rech);
        for(Article elem: articlesList)
        {
        	 System.out.println (elem);
-       }
+       }*/
+    
+   /* articlesList=pcd.trier_article();
+       for(Article elem: articlesList)
+       {
+       	 System.out.println (elem);
+       }*/
+    
       
-      String str1 ="1985-05-05";
+      
+       
+       String str1 ="2021-03-03";
         Date date1=Date.valueOf(str1);
-      Commentaire c = new Commentaire(1,"Message2",date1,1,1);
+      Commentaire c = new Commentaire(1,"Message",date1,4,1);
       CommentaireService ccd = new CommentaireService();
-      //ccd.ajouterCommentaire(c);
+      ccd.ajouterCommentaire(c);
       //ccd.supprimerCommentaire(c);
       //ccd.updateCommentaire(c);
       
@@ -59,6 +73,9 @@ public class MainClass {
        {
        	 System.out.println (elem);
        }*/
+     
+     
+     
      List<Pair<Integer,Article>> list = new ArrayList<Pair<Integer,Article>>();
       list=pcd.article_plus_commentes();
       for(Pair<Integer, Article> elem: list)

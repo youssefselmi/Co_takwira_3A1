@@ -20,6 +20,7 @@ public interface IArticleService <Article> {
      public List<Article> displayArticles();
      public List<Article>chercher_article(String titre);
      public List<Pair<Integer, Article>>article_plus_commentes();
+     public List<Article> afficher_article();
      
 }
     

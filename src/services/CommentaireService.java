@@ -22,18 +22,23 @@ import tools.MyConnection;
  * @author khali
  */
 public class CommentaireService implements ICommentaireService<Commentaire> {
+    	private String output;
+
     
     public void ajouterCommentaire(Commentaire c) {
          try {
+             output = BadWordFilter.getCensoredText(c.getContenu());
             String requete= "INSERT INTO commentaire (contenu,date,id_article,id_joueur)"
-                    + "VALUES (?,?,?,?)";
+                    + "VALUES (?,CURRENT_TIMESTAMP(),?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx()
                     .prepareStatement(requete);
-            pst.setString(1, c.getContenu());
-            pst.setDate(2, (Date) c.getDate());
-            pst.setInt(3, c.getId_article());
-            pst.setInt(4,c.getId_joueur());
+            pst.setString(1, output);
+            pst.setInt(2, c.getId_article());
+            pst.setInt(3,c.getId_joueur());
             pst.executeUpdate();
+            		
+                        
+
             System.out.println("Commentaire inserée");
             
         } catch (SQLException ex) {
@@ -59,14 +64,13 @@ public class CommentaireService implements ICommentaireService<Commentaire> {
     @Override
     public void updateCommentaire(Commentaire c) {
         try {
-            String requete = "UPDATE commentaire SET contenu=?,date=?,id_article=?,id_joueur=? WHERE id=?";
+            String requete = "UPDATE commentaire SET contenu=?,date=CURRENT_TIMESTAMP(),id_article=?,id_joueur=? WHERE id=?";
             PreparedStatement pst = MyConnection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, c.getContenu());
-            pst.setDate(2, (Date) c.getDate());
-            pst.setInt(3, c.getId_article());
-            pst.setInt(4,c.getId_joueur());
-            pst.setInt(5,c.getId());
+            pst.setInt(2, c.getId_article());
+            pst.setInt(3,c.getId_joueur());
+            pst.setInt(4,c.getId());
             pst.executeUpdate();
             System.out.println("Commentaire modifiée");
         } catch (SQLException ex) {
@@ -82,6 +86,31 @@ public class CommentaireService implements ICommentaireService<Commentaire> {
             Statement st = MyConnection.getInstance().getCnx()
                     .createStatement();
             ResultSet rs =  st.executeQuery(requete);
+            while(rs.next()){
+                Commentaire c = new Commentaire();
+                c.setId(rs.getInt("id"));
+                c.setContenu(rs.getString("contenu"));
+                c.setDate(rs.getDate("date"));
+                c.setId_article(rs.getInt("id_article"));
+                c.setId_joueur(rs.getInt("id_joueur"));
+                commentairesList.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return commentairesList;
+    }
+    
+    @Override
+    public List<Commentaire> displaycommentaires_par_article(Integer a) {
+         List<Commentaire> commentairesList = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM commentaire WHERE id_article= ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+            //System.out.println(a);
+            pst.setInt(1, a);
+            ResultSet rs =  pst.executeQuery();
             while(rs.next()){
                 Commentaire c = new Commentaire();
                 c.setId(rs.getInt("id"));

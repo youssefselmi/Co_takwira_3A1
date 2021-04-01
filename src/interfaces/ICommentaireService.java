@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import entities.Article;
 import entities.Commentaire;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public interface ICommentaireService<Commentaire> {
     public void supprimerCommentaire(Commentaire c);
     public void updateCommentaire(Commentaire c);
     public List<Commentaire> displaycommentaires();
+    public List<Commentaire> displaycommentaires_par_article(Integer a);
     
     
     

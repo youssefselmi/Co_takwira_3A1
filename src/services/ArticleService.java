@@ -7,6 +7,8 @@ package services;
 
 import entities.Article;
 import interfaces.IArticleService;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +19,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 import tools.MyConnection;
 
@@ -28,14 +34,14 @@ public class ArticleService implements IArticleService<Article> {
     @Override
     public void ajouterArticle(Article a) {
          try {
-            String requete= "INSERT INTO article (type,titre,description,date,id_personnel)"
-                    + "VALUES (?,?,?,?,?)";
+            String requete= "INSERT INTO article (type,titre,description,date,url,id_personnel)"
+                    + "VALUES (?,?,?,CURRENT_TIMESTAMP(),?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, a.getType());
             pst.setString(2, a.getTitre());
             pst.setString(3, a.getDescription());
-            pst.setDate(4, (Date) a.getDate());
+            pst.setString(4, a.getUrl());
             pst.setInt(5,a.getId_personnel());
             pst.executeUpdate();
             System.out.println("Article inserée");
@@ -64,15 +70,14 @@ public class ArticleService implements IArticleService<Article> {
     @Override
     public void updateArticle(Article a) {
         try {
-            String requete = "UPDATE article SET type=?,titre=?,description=?,date=?,id_personnel=?  WHERE id=?";
+            String requete = "UPDATE article SET type=?,titre=?,description=?,date=CURRENT_TIMESTAMP(),id_personnel=?  WHERE id=?";
             PreparedStatement pst = MyConnection.getInstance().getCnx()
                     .prepareStatement(requete);
             pst.setString(1, a.getType());
             pst.setString(2, a.getTitre());
             pst.setString(3, a.getDescription());
-            pst.setDate(4, (Date) a.getDate());
-            pst.setInt(5,a.getId_personnel());
-            pst.setInt(6,a.getId());
+            pst.setInt(4,a.getId_personnel());
+            pst.setInt(5,a.getId());
             
             pst.executeUpdate();
             System.out.println("Article modifiée");
@@ -96,6 +101,7 @@ public class ArticleService implements IArticleService<Article> {
                 a.setTitre(rs.getString("titre"));
                 a.setDescription(rs.getString("description"));
                 a.setDate(rs.getDate("date"));
+                a.setUrl(rs.getString("url"));
                 a.setId_personnel(rs.getInt("id_personnel"));
                 articlesList.add(a);
             }
@@ -138,12 +144,12 @@ public class ArticleService implements IArticleService<Article> {
     public List<Article>trier_article() {
                  List<Article> list=new ArrayList<>();
         try{
-            String requete="select * from article order by date asc";
+            String requete="select * from article order by date desc";
             PreparedStatement ps = MyConnection.getInstance().getCnx()
                     .prepareStatement(requete);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                list.add(new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6)));
+                list.add(new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getInt(7)));
             }
         }
         catch(SQLException ex){
@@ -157,11 +163,11 @@ public class ArticleService implements IArticleService<Article> {
                  List<Pair<Integer,Article>> list = new ArrayList<Pair<Integer,Article>>();
         try{
             String requete="select * from article";
-            PreparedStatement ps = MyConnection.getInstance().getCnx()
-                    .prepareStatement(requete);
-            ResultSet rs=ps.executeQuery();
+            Statement ps = MyConnection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  ps.executeQuery(requete);
             while(rs.next()){
-                Pair<Integer, Article> pair = new Pair<>(0, new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6)));
+                Pair<Integer, Article> pair = new Pair<>(0, new Article(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getInt(7)));
                 list.add(pair);
             }
             
@@ -195,8 +201,6 @@ public class ArticleService implements IArticleService<Article> {
         return o2.getKey()-o1.getKey();
     }
 });
-            
-            
         }
   
         catch(SQLException ex){
@@ -205,8 +209,46 @@ public class ArticleService implements IArticleService<Article> {
         return list;
     }
     
+    @Override
+    public List<Article> afficher_article() {
+                    List<Article> list=new ArrayList<>();
+        try{
+
+             String requete="select * from article";
+            Statement st = MyConnection.getInstance().getCnx()
+                    .createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+            
+            while(rs.next()){
+             Article a=new Article();
+             ImageView img=new ImageView();
+             Image image;
+             try{
+                 image=new Image(new FileInputStream(rs.getString("urlimage")));
+                 img.setImage(image);
+                 Effect DropShadow = new DropShadow();
+                 img.setEffect(DropShadow);
+                 img.setPreserveRatio(true);
+                 img.setFitWidth(70);
+                 img.setFitHeight(70);
+             }catch (FileNotFoundException ex) {
+                    System.out.println(ex.getMessage());
+                }
+             a.setImg(img);
+              list.add(new Article(rs.getString("type"),rs.getString("titre"),rs.getString("description"),rs.getDate("date"),a.getImg(),rs.getInt("id_personnel")));
+            }
+        }
+        catch(SQLException ex){
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    }
     
     
- 
     
+    
+    
+    
+
 }

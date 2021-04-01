@@ -36,6 +36,13 @@ public class Commentaire {
         this.id_joueur = id_joueur;
     }
 
+    public Commentaire(int id, String contenu, int id_article, int id_joueur) {
+        this.id = id;
+        this.contenu = contenu;
+        this.id_article = id_article;
+        this.id_joueur = id_joueur;
+    }
+
     public int getId() {
         return id;
     }
