@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coach{% endblock %}
+
+{% block body %}
+    <h1>Coach</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdCoach</th>
+                <td>{{ coach.idCoach }}</td>
+            </tr>
+            <tr>
+                <th>NomCoach</th>
+                <td>{{ coach.nomCoach }}</td>
+            </tr>
+            <tr>
+                <th>PrenomCoach</th>
+                <td>{{ coach.prenomCoach }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ coach.dateNaissance ? coach.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <td>{{ coach.grade }}</td>
+            </tr>
+            <tr>
+                <th>DateFinContrat</th>
+                <td>{{ coach.dateFinContrat ? coach.dateFinContrat|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AdresseMail</th>
+                <td>{{ coach.adresseMail }}</td>
+            </tr>
+            <tr>
+                <th>Salaire</th>
+                <td>{{ coach.salaire }}</td>
+            </tr>
+            <tr>
+                <th>NbTropheLocaux</th>
+                <td>{{ coach.nbTropheLocaux }}</td>
+            </tr>
+            <tr>
+                <th>NbTropheInternationaux</th>
+                <td>{{ coach.nbTropheInternationaux }}</td>
+            </tr>
+            <tr>
+                <th>FormationPrefere</th>
+                <td>{{ coach.formationPrefere }}</td>
+            </tr>
+            <tr>
+                <th>ImageFormation</th>
+                <td>{{ coach.imageFormation }}</td>
+            </tr>
+            <tr>
+                <th>ImageCoach</th>
+                <td>{{ coach.imageCoach }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ coach.age }}</td>
+            </tr>
+            <tr>
+                <th>MdpCoach</th>
+                <td>{{ coach.mdpCoach }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('coach_index') }}">back to list</a>
+
+    <a href="{{ path('coach_edit', {'idCoach': coach.idCoach}) }}">edit</a>
+
+    {{ include('coach/_delete_form.html.twig') }}
+{% endblock %}

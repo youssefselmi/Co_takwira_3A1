@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coach index{% endblock %}
+
+{% block body %}
+    <h1>Coach index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCoach</th>
+                <th>NomCoach</th>
+                <th>PrenomCoach</th>
+                <th>DateNaissance</th>
+                <th>Grade</th>
+                <th>DateFinContrat</th>
+                <th>AdresseMail</th>
+                <th>Salaire</th>
+                <th>NbTropheLocaux</th>
+                <th>NbTropheInternationaux</th>
+                <th>FormationPrefere</th>
+                <th>ImageFormation</th>
+                <th>ImageCoach</th>
+                <th>Age</th>
+                <th>MdpCoach</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td>{{ coach.idCoach }}</td>
+                <td>{{ coach.nomCoach }}</td>
+                <td>{{ coach.prenomCoach }}</td>
+                <td>{{ coach.dateNaissance ? coach.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ coach.grade }}</td>
+                <td>{{ coach.dateFinContrat ? coach.dateFinContrat|date('Y-m-d') : '' }}</td>
+                <td>{{ coach.adresseMail }}</td>
+                <td>{{ coach.salaire }}</td>
+                <td>{{ coach.nbTropheLocaux }}</td>
+                <td>{{ coach.nbTropheInternationaux }}</td>
+                <td>{{ coach.formationPrefere }}</td>
+                <td>{{ coach.imageFormation }}</td>
+                <td>{{ coach.imageCoach }}</td>
+                <td>{{ coach.age }}</td>
+                <td>{{ coach.mdpCoach }}</td>
+                <td>
+                    <a href="{{ path('coach_show', {'idCoach': coach.idCoach}) }}">show</a>
+                    <a href="{{ path('coach_edit', {'idCoach': coach.idCoach}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('coach_new') }}">Create new</a>
+{% endblock %}
