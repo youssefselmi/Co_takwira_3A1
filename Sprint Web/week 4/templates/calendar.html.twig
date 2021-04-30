@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        Co-Takwira
+    </a></div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li class="nav-item active  ">
+            <a class="nav-link" href="{{ path('template') }}">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ path('template_match') }}">
+                <i class="material-icons">bubble_chart</i>
+                <p> Mes Matchs</p>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ path('template_stade') }}">
+                <i class="material-icons">bubble_chart</i>
+                <p> Mes Stades</p>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ path('planification') }}">
+                <i class="material-icons">bubble_chart</i>
+                <p> Calender</p>
+            </a>
+        </li>
+
+
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
