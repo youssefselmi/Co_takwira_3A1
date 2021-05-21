@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="RegisterForm" scrollableY="true" name="RegisterForm">
+  <component type="Container" layout="BoxLayout" boxLayoutAxis="Y"  preferredSize="230.95238mm 83.862434mm" name="Box_Layout_Y">
+    <layoutConstraint insets="17.168482% 7.6923084% 44.30295% 7.302823%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <component type="TextField" hint="First Name" name="firstName">
+    </component>
+    <component type="TextField" hint="Last Name" name="lastName">
+    </component>
+    <component type="TextField" hint="Email" constraint="1" name="email">
+    </component>
+    <component type="TextField" hint="Password" constraint="65536" name="password">
+    </component>
+    <component type="Picker" text="Date Of birth" pickerType="1" name="Picker">
+    </component>
+    <component type="Button" text="Register" name="Btn_Register" actionEvent="true">
+    </component>
+    <component type="Button" text="Login" name="Btn_Login" actionEvent="true">
+    </component>
+  </component>
+</component>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="CoHeal" scrollableY="false" name="HomeForm">
+  <component type="Label" text="Explore" styles="font:6.0mm native:MainBold native:MainBold;" name="exploreLabel">
+    <layoutConstraint insets="2.3809524mm auto auto 3.1746035mm" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Container" layout="GridLayout" gridLayoutRows="2" gridLayoutColumns="2"  preferredSize="89.41799mm 46.296295mm" name="Grid_Layout">
+    <layoutConstraint insets="2.1164017mm 0.7936508mm auto -0.7936508mm" referenceComponents="0 -1 -1 0 " referencePositions="1.0 0.0 0.0 0.0" />
+    <component type="Container" layout="LayeredLayout" layeredLayoutPreferredWidthMM="28.571428" layeredLayoutPreferredHeightMM="24.338625"  styles="border:roundRect +top-left +top-right +bottom-left +bottom-right 3.0mm; bgColor:7fcbc3; transparency:128; opacity:255; margin:8px 8px 8px 8px;" preferredSize="28.571428mm 24.338625mm" name="eventsContainer">
+      <component type="ScaleImageLabel" preferredSize="11.904762mm 12.433863mm" icon="fontImage:e878" name="eventIcon">
+        <layoutConstraint insets="2.9100533mm 8.730159mm 8.994709mm 27.79547%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+      </component>
+      <component type="Label" text="Events" styles="font:5.0mm native:MainBold native:MainBold; alignment:center;" preferredSize="27.248678mm inherit" name="eventsLabel">
+        <layoutConstraint insets="0.0mm 2.3809524mm auto 2.645503mm" referenceComponents="0 -1 -1 -1" referencePositions="1.0 0.0 0.0 0.0" />
+      </component>
+    </component>
+    <component type="Container" layout="LayeredLayout" layeredLayoutPreferredWidthMM="28.571428" layeredLayoutPreferredHeightMM="24.338625"  styles="border:roundRect +top-left +top-right +bottom-left +bottom-right 3.0mm; bgColor:7fcbc3; transparency:128; opacity:255; margin:8px 8px 8px 8px;" preferredSize="28.571428mm 24.338625mm" name="tasksContainer">
+      <component type="ScaleImageLabel" preferredSize="11.904762mm 12.433863mm" icon="fontImage:e85d" name="tasksIcon">
+        <layoutConstraint insets="2.9100533mm 8.730159mm 8.994709mm 27.79547%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+      </component>
+      <component type="Label" text="Tasks" styles="font:5.0mm native:MainBold native:MainBold; alignment:center;" preferredSize="27.248678mm inherit" name="tasksLabel">
+        <layoutConstraint insets="0.0mm 2.3809524mm auto 2.645503mm" referenceComponents="0 -1 -1 -1" referencePositions="1.0 0.0 0.0 0.0" />
+      </component>
+    </component>
+    <component type="Container" layout="LayeredLayout" layeredLayoutPreferredWidthMM="28.571428" layeredLayoutPreferredHeightMM="24.338625"  styles="border:roundRect +top-left +top-right +bottom-left +bottom-right 3.0mm; bgColor:7fcbc3; transparency:128; opacity:255; margin:8px 8px 8px 8px;" preferredSize="28.571428mm 24.338625mm" name="booksContainer">
+      <component type="ScaleImageLabel" preferredSize="11.904762mm 12.433863mm" icon="fontImage:e865" name="booksIcon">
+        <layoutConstraint insets="2.9100533mm 8.730159mm 8.994709mm 27.79547%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+      </component>
+      <component type="Label" text="Books" styles="font:5.0mm native:MainBold native:MainBold; alignment:center;" preferredSize="27.248678mm inherit" name="booksLabel">
+        <layoutConstraint insets="0.0mm 2.3809524mm auto 2.645503mm" referenceComponents="0 -1 -1 -1" referencePositions="1.0 0.0 0.0 0.0" />
+      </component>
+    </component>
+    <component type="Container" layout="LayeredLayout" layeredLayoutPreferredWidthMM="28.571428" layeredLayoutPreferredHeightMM="24.338625"  styles="border:roundRect +top-left +top-right +bottom-left +bottom-right 3.0mm; bgColor:7fcbc3; transparency:128; opacity:255; margin:8px 8px 8px 8px;" preferredSize="28.571428mm 24.338625mm" name="recipesContainer">
+      <component type="ScaleImageLabel" preferredSize="11.904762mm 12.433863mm" icon="fontImage:eb4c" name="recipesIcon">
+        <layoutConstraint insets="2.9100533mm 8.730159mm 8.994709mm 27.79547%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+      </component>
+      <component type="Label" text="Recipes" styles="font:5.0mm native:MainBold native:MainBold; alignment:center;" preferredSize="27.248678mm inherit" name="recipesLabel">
+        <layoutConstraint insets="0.0mm 2.3809524mm auto 2.645503mm" referenceComponents="0 -1 -1 -1" referencePositions="1.0 0.0 0.0 0.0" />
+      </component>
+    </component>
+  </component>
+</component>
